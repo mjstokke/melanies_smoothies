@@ -51,7 +51,7 @@ smoothiefroot_response = requests.get(url)
 # 2. Check if the request succeeded, then extract the data
 if smoothiefroot_response.status_code == 200:
     # Use .json() if the API returns JSON, or .text if it returns raw text
-    fruit_data = smoothiefroot_response.json() 
+    fruit_data = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
     
     # Use st.write or st.json to display the data beautifully
     st.json(fruit_data)
