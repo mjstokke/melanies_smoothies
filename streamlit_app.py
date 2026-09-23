@@ -43,18 +43,7 @@ if ingredients_list:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered, '+name_on_order+'!', icon="✅")
 
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
 
-# 1. Cleaned up the URL string
-url = "https://my.smoothiefroot.com/api/fruit/watermelon"
-smoothiefroot_response = requests.get(url)
-
-# 2. Check if the request succeeded, then extract the data
-if smoothiefroot_response.status_code == 200:
-    # Use .json() if the API returns JSON, or .text if it returns raw text
-    fruit_data = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-    
-    # Use st.write or st.json to display the data beautifully
-    st.json(fruit_data)
-else:
-    st.error(f"Failed to fetch data. Status code: {smoothiefroot_response.status_code}")
 
